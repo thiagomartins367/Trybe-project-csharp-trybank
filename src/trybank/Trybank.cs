@@ -24,7 +24,20 @@ public class TrybankLib
     // 1. Construa a funcionalidade de cadastrar novas contas
     public void RegisterAccount(int number, int agency, int pass)
     {
-        throw new NotImplementedException();
+        for (int index = 0; index < this.Bank.Length && index != registeredAccounts; index++)
+        {
+            var accountNumber = this.Bank[index, 0];
+            var accountAgency = this.Bank[index, 1];
+            if (accountNumber == number && accountAgency == agency)
+            {
+                throw new ArgumentException("A conta já está sendo usada!");
+            }
+        }
+        this.Bank[registeredAccounts, 0] = number;
+        this.Bank[registeredAccounts, 1] = agency;
+        this.Bank[registeredAccounts, 2] = pass;
+        this.Bank[registeredAccounts, 3] = 0;
+        registeredAccounts += 1;
     }
 
     // 2. Construa a funcionalidade de fazer Login
