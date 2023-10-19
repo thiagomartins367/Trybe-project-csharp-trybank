@@ -64,10 +64,16 @@ public class TrybankLib
         return null;
     }
 
+    private bool AuthenticateUser()
+    {
+        if (!this.Logged) throw new AccessViolationException("Usuário não está logado");
+        return true;
+    }
+
     // 3. Construa a funcionalidade de fazer Logout
     public void Logout()
     {
-        if (!this.Logged) throw new AccessViolationException("Usuário não está logado");
+        this.AuthenticateUser();
         this.Logged = false;
         this.loggedUser = -99;
     }
@@ -75,7 +81,9 @@ public class TrybankLib
     // 4. Construa a funcionalidade de checar o saldo
     public int CheckBalance()
     {
-        throw new NotImplementedException();   
+        this.AuthenticateUser();
+        int userId = this.loggedUser;
+        return this.Bank[userId, 3];
     }
 
     // 5. Construa a funcionalidade de depositar dinheiro
