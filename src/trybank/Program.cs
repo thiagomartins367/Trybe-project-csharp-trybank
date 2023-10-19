@@ -38,6 +38,9 @@ class Program
             saldo = bank.CheckBalance();
             Console.WriteLine("Saldo atual: " + saldo);
 
+            // Registrando uma nova conta
+            bank.RegisterAccount(54321, 1002, 30);
+
             // Realizando uma transferência
             bank.Transfer(54321, 1002, 30);
             Console.WriteLine("Transferência de 30 para conta 54321 realizada com sucesso!");
