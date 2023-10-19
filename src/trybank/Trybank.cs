@@ -97,7 +97,11 @@ public class TrybankLib
     // 6. Construa a funcionalidade de sacar dinheiro
     public void Withdraw(int value)
     {
-        throw new NotImplementedException();
+        this.AuthenticateUser();
+        int userId = this.loggedUser;
+        int userBalance = this.Bank[userId, 3];
+        if (userBalance < value) throw new InvalidOperationException("Saldo insuficiente");
+        this.Bank[userId, 3] -= value;
     }
 
     // 7. Construa a funcionalidade de transferir dinheiro entre contas
