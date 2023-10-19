@@ -24,15 +24,8 @@ public class TrybankLib
     // 1. Construa a funcionalidade de cadastrar novas contas
     public void RegisterAccount(int number, int agency, int pass)
     {
-        for (int index = 0; index < this.Bank.Length && index != registeredAccounts; index++)
-        {
-            var accountNumber = this.Bank[index, 0];
-            var accountAgency = this.Bank[index, 1];
-            if (accountNumber == number && accountAgency == agency)
-            {
-                throw new ArgumentException("A conta já está sendo usada!");
-            }
-        }
+        int[]? account = this.GetAccount(number, agency);
+        if (account != null) throw new ArgumentException("A conta já está sendo usada!");
         this.Bank[registeredAccounts, 0] = number;
         this.Bank[registeredAccounts, 1] = agency;
         this.Bank[registeredAccounts, 2] = pass;
@@ -43,7 +36,32 @@ public class TrybankLib
     // 2. Construa a funcionalidade de fazer Login
     public void Login(int number, int agency, int pass)
     {
-        throw new NotImplementedException();
+        if (this.Logged) throw new AccessViolationException("Usuário já está logado");
+        int[]? userAccount = this.GetAccount(number, agency);
+        if (userAccount == null) throw new ArgumentException("Agência + Conta não encontrada");
+        if (pass != userAccount[2]) throw new ArgumentException("Senha incorreta");
+        this.Logged = true;
+        this.loggedUser = userAccount[4];
+    }
+
+    private int[]? GetAccount(int number, int agency)
+    {
+        for (int index = 0; index < this.Bank.Length && index != registeredAccounts; index++)
+        {
+            int accountNumber = this.Bank[index, 0];
+            int accountAgency = this.Bank[index, 1];
+            if (accountNumber == number && accountAgency == agency)
+            {
+                int[] userAccount = new int[5];
+                userAccount[0] = accountNumber;
+                userAccount[1] = accountAgency;
+                userAccount[2] = this.Bank[index, 2];
+                userAccount[3] = this.Bank[index, 3];
+                userAccount[4] = index;
+                return userAccount;
+            }
+        }
+        return null;
     }
 
     // 3. Construa a funcionalidade de fazer Logout
