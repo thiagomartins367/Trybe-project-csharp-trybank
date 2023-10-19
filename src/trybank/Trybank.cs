@@ -107,8 +107,15 @@ public class TrybankLib
     // 7. Construa a funcionalidade de transferir dinheiro entre contas
     public void Transfer(int destinationNumber, int destinationAgency, int value)
     {
-        throw new NotImplementedException();
+        this.AuthenticateUser();
+        int userId = this.loggedUser;
+        int userBalance = this.Bank[userId, 3];
+        if (userBalance < value) throw new InvalidOperationException("Saldo insuficiente");
+        int[]? destinationAccount = this.GetAccount(destinationNumber, destinationAgency);
+        if (destinationAccount == null)
+            throw new ArgumentException("Agência + Conta de destino não encontrada");
+        int destinationAccountId = destinationAccount[4];
+        this.Withdraw(value);
+        this.Bank[destinationAccountId, 3] += value;
     }
-
-   
 }
