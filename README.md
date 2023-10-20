@@ -49,6 +49,6 @@ Para adicionar as alterações da nova branch de desenvolvimento na branch princ
 
 Alterações diretas na branch ```main``` estão bloqueadas.
 
-## Contribuidores
+## Contribuidores 🤝
 
 - [THIAGO MARTINS](https://github.com/thiagomartins367) - criador e mantenedor
