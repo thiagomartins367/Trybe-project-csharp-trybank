@@ -1,6 +1,9 @@
 start: # Ex: make start
 	dotnet run --project ./src/trybank/trybank.csproj
 
+restore: # Ex: make restore
+	dotnet restore ./src
+
 format-trybank: # Ex: make format-trybank
 	dotnet format ./src/src.sln --verify-no-changes --report ./format.json --include ./trybank/Trybank.cs diagnostic
 
