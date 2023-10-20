@@ -28,6 +28,8 @@ dotnet run --project ./src/trybank/trybank.csproj
 
 Certifique-se de ter instalado o [.NET Framework](https://dotnet.microsoft.com/pt-br) (Windows) ou [.NET Core](https://dotnet.microsoft.com/pt-br/) (Linux/ Mac) em sua máquina para o desenvolvimento de novas funcionalidades ou refatorações de código.
 
+Utilize os scripts do arquivo ```Makefile``` na raiz do projeto para aumentar a agilidade durante o desenvolvimento.
+
 **Na raiz do projeto execute os comandos abaixo no seu terminal:**
 1. Instale as dependências
 ```
