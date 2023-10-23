@@ -5,7 +5,7 @@ restore: # Ex: make restore
 	dotnet restore ./src
 
 format-trybank: # Ex: make format-trybank
-	dotnet format ./src/src.sln --verify-no-changes --report ./format.json --include ./trybank/Trybank.cs diagnostic
+	dotnet format ./src/src.sln --verify-no-changes --report ./format.json --include ./src/trybank/Trybank.cs diagnostic
 
 test: # Ex: make test
 	dotnet test ./src/src.sln
